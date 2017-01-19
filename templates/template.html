@@ -394,7 +394,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 <body>
 <header class="banner">
 <div class="container">
-<form id="_searchbox"><input name="search" placeholder="Search package" autofocus></form>
+<form id="_searchbox"><input name="search" placeholder="Search package"></form>
 <h1>{{ title }}</h1>
 {% if subtitle %}
 <h2>{{ subtitle }}</h2>
@@ -415,7 +415,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 <b class="pkg-dep-rel">{{ dep_rel[rel] }}</b>:
 {% for dep in item['dependency'][rel] -%}
 <span class="pkg-dep"><a href="#{{ dep[0] }}">{{ dep[0] }}</a>{{ dep[1] }}</span>
-{%- endfor %}
+{% endfor %}
 </p>{%- endif %}
 {%- endfor %}
 </div>
