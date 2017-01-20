@@ -47,12 +47,10 @@ a:visited {
   font-size: 20px;
   margin: 5px 0;
 }
-#_searchbox {
-  float: right;
-}
 .banner input {
   font-size: 1.2em;
-  margin-top: 1em;
+  margin: .6em 0 1em;
+  width: 15em;
   background-color: transparent;
   border-width: 0px 0px 2px;
   border-style: solid;
@@ -405,11 +403,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 <body>
 <header class="banner">
 <div class="container">
-<form id="_searchbox"><input name="search" placeholder="Search package"></form>
 <h1>{{ title }}</h1>
 {% if subtitle %}
 <h2>{{ subtitle }}</h2>
 {% endif %}
+<form id="_searchbox"><input name="search" placeholder="Search package"></form>
 </div>
 </header>
 <div class="container">
