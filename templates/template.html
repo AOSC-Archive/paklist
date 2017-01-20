@@ -96,6 +96,7 @@ footer {
   box-sizing: border-box;
 }
 .autocomplete-suggestion {
+  display: block;
   position: relative;
   padding: 0 .6em;
   line-height: 23px;
@@ -111,6 +112,10 @@ footer {
 }
 .autocomplete-suggestion.selected {
   background: #f0f0f0;
+}
+.autocomplete-suggestion:hover, .autocomplete-suggestion:focus {
+  text-decoration: none;
+  color: #333;
 }
 </style>
 <script>
@@ -225,7 +230,7 @@ var autoComplete = (function(){
           that.last_val = that.value;
           that.sc.style.display = 'none';
           setTimeout(function(){ that.sc.style.display = 'none'; }, 350); // hide suggestions on fast input
-        } else if (that !== document.activeElement) setTimeout(function(){ that.focus(); }, 20);
+        };
       };
       addEvent(that, 'blur', that.blurHandler);
 
@@ -379,6 +384,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     minChars: 2,
     source: function(term, suggest){
       suggest(prefixSearch(pkgTrie, term));
+    },
+    renderItem: function (item, search){
+      // escape special characters
+      search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+      var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+      return '<a class="autocomplete-suggestion" data-val="' + item + '" href="#' + item + '">' + item.replace(re, "<b>$1</b>") + '</a>';
     },
     onSelect: function(event, term, item) {
       gotoPkg(term);
